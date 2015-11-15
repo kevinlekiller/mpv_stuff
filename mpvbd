@@ -1,0 +1,23 @@
+#!/bin/bash
+
+for arg in "$@"; do
+    if [[ -e "$arg" ]]; then
+        foundPath=$(realpath $arg)
+    else
+        argString="$arg $argString"
+    fi
+done
+if [[ ! -e "$foundPath" ]]; then
+    exit 1
+fi
+
+if [[ -f "$foundPath" ]]; then
+    foundPath=$(dirname $foundPath)
+fi
+
+if [[ $(echo $foundPath | grep -Poi '/(BDMV|CERTIFICATE)/?') != "" ]]; then
+    foundPath=$(echo $foundPath | grep -Poi '^.*?/(BDMV|CERTIFICATE)')
+    foundPath=$(dirname $foundPath)
+fi
+
+mpv "bd:///$foundPath" $(echo $argString | sed 's/^ *| *$//g')
