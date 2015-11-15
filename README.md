@@ -8,5 +8,5 @@ The path can be the main path to the bluray or any folder/file within the BDMV o
 The intention of this script is to be used with a file manager like Dolphin, associating .m2ts or .bdmv files.
 
 Examples:  
-`mpvbd /media/bluraydrive/`
+`mpvbd /media/bluraydrive/`  
 `mpvbd /media/bluraydrive/BDMV/index.bdmv`
