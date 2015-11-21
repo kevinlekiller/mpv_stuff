@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Disables compositor on KDE Plasma 5 before opening mpv and enables it when exiting.
+
+if [[ $(kwin_x11 --version 2>/dev/null | grep "kwin 5") != "" ]] && [[ $(qdbus org.kde.KWin /Compositor active) == "true" ]]; then
+	qdbus org.kde.KWin /Compositor suspend
+	mpv $@
+	qdbus org.kde.KWin /Compositor resume
+else
+	mpv $@
+fi
