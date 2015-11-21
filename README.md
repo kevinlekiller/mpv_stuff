@@ -12,11 +12,3 @@ Examples:
 `mpvbd /media/bluraydrive/`  
 `mpvbd /media/bluraydrive/BDMV/index.bdmv`  
 `mpvbd --fs --pause /media/bluraydrive/BDMV/`
-
-####mpvpnc
-
-Disables the compositor on plasma 5 when starting mpv, sets back the compositor when exiting.  
-Only disables/re-enables the compositor if it was already enabled.
-
-Examples:  
-`mpvpnc /path/to/file --pause --start=1:01`
