@@ -2,7 +2,7 @@
 
 for arg in "$@"; do
     if [[ -e "$arg" ]]; then
-        foundPath=$(realpath $arg)
+        foundPath="$(realpath "$arg")"
     else
         argString="$arg $argString"
     fi
@@ -12,12 +12,12 @@ if [[ ! -e "$foundPath" ]]; then
 fi
 
 if [[ -f "$foundPath" ]]; then
-    foundPath=$(dirname $foundPath)
+    foundPath="$(dirname "$foundPath")"
 fi
 
-if [[ $(echo $foundPath | grep -Poi '/(BDMV|CERTIFICATE)/?') != "" ]]; then
-    foundPath=$(echo $foundPath | grep -Poi '^.*?/(BDMV|CERTIFICATE)')
-    foundPath=$(dirname $foundPath)
+if [[ $(echo "$foundPath" | grep -Poi '/(BDMV|CERTIFICATE)/?') != "" ]]; then
+    foundPath=$(echo "$foundPath" | grep -Poi '^.*?/(BDMV|CERTIFICATE)')
+    foundPath="$(dirname "$foundPath")"
 fi
 
 mpv "bd:///$foundPath" $(echo $argString | sed 's/^ *| *$//g')
