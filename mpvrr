@@ -38,7 +38,7 @@ checkMode () {
 MODE=0
 for arg in "$@"; do
     if [[ -f "$arg" ]]; then
-        fr=$(ffprobe -v quiet -select_streams v -show_entries stream=r_frame_rate "$(realpath "$arg")" | grep -Po "\d+/\d+")
+        fr=$(ffprobe -v quiet -select_streams v -show_entries stream=r_frame_rate "$(realpath "$arg")" | grep -m 1 -Po "\d+/\d+")
         if [[ "$fr" == "" ]]; then break; fi
 
         fr=$(bc -l <<< "$(echo $fr | cut -f 1 -d/) / $(echo $fr | cut -f 2 -d/)" | awk '{print int($1+0.5)}')
