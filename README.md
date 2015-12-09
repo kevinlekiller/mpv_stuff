@@ -12,8 +12,3 @@ Examples:
 `mpvbd /media/bluraydrive/`  
 `mpvbd /media/bluraydrive/BDMV/index.bdmv`  
 `mpvbd --fs --pause /media/bluraydrive/BDMV/`
-
-####mpvrr
-
-This is meant to be used while using [autospeed](https://github.com/kevinlekiller/mpv_scripts/tree/master/autospeed).  
-autospeed can change the refresh rate of the monitor, although with vdpau some issues arise, like image corruption, this is why this exists.
