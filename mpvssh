@@ -1,0 +1,57 @@
+#!/bin/bash
+<<HEAD
+    List videos from a SSH server's directory, plays them when you type in the number and press enter.
+    Change settings below for your SSH server.
+    Optionally pass arguments to search, for example:
+    ./mpv_ssh 2002    ; will search for videos with "2002" in the file name.
+    
+    Copyright (C) 2016  kevinlekiller
+    
+    This program is free software; you can redistribute it and/or
+    modify it under the terms of the GNU General Public License
+    as published by the Free Software Foundation; either version 2
+    of the License, or (at your option) any later version.
+    
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+    
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+    https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html
+HEAD
+
+#########################################################################
+################################ Settings ###############################
+#########################################################################
+
+# Username and password for the ssh server in this format: username:password (I think mpv/ffmpeg can not use certificates yet)
+username="username:password"
+
+# Address to the SSH server.
+host="192.168.1.2"
+
+# Folder on the ssh server to look for video files in.
+videosdir="/home/username/Videos"
+
+# Local path to mpv
+mpvbin="$(which mpv)"
+
+# Only find files bigger than this in size.
+size="+50M"
+
+# Video extensions to find, seperate with \|
+extensions="avi\|flv\|m4v\|mov\|mp4\|mpg\|mpeg\|mkv\|ogv\|vob\|webm\|wmv"
+
+#########################################################################
+#########################################################################
+#########################################################################
+
+# Prevents select iterating on tabs/spaces.
+IFS=$'\n'
+select file in $(ssh "$username@$host" "find $videosdir -type f -iregex '.*$@.*\.\($extensions\)\s*$' -size "$size" | sort"); do
+        "$mpvbin" "sftp://$username@$host$file"
+        exit 0
+done
