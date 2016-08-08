@@ -2,8 +2,9 @@
 <<HEAD
     List videos from a SSH server's directory, plays them when you type in the number and press enter.
     Change settings below for your SSH server.
-    Optionally pass arguments to search, for example:
-    ./mpv_ssh 2002    ; will search for videos with "2002" in the file name.
+    Optionally pass regex to search, for example:
+    ./mpv_ssh 2002        ; will search for videos with "2002" in the file name.
+    ./mpv_ssh 1080p.*h264 ; will search for videos with 1080p followed by h264 in the file name
     
     Copyright (C) 2016  kevinlekiller
     
