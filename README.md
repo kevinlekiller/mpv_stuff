@@ -3,12 +3,12 @@ Random mpv stuff.
 
 ####mpvssh
 
-Bash script for listing videos from a SSH server's directory,
-plays them when you type in the number and press enter.
-Change settings in the script for your SSH server's location and username.
-Optionally pass regex to search, for example:
-`./mpv_ssh 2002`         ; will search for videos with "2002" in the file name.
-`./mpv_ssh 1080p.*h264`  ; will search for videos with 1080p followed by h264 in the file name.
+Bash script for listing videos from a SSH server's directory,  
+plays them when you type in the number and press enter.  
+Change settings in the script for your SSH server's location and username.  
+Optionally pass regex to search, for example:  
+`./mpv_ssh 2002`         ; will search for videos with "2002" in the file name.  
+`./mpv_ssh 1080p.*h264`  ; will search for videos with 1080p followed by h264 in the file name.  
 
 ####mpvbd
 
