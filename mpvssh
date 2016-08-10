@@ -53,6 +53,11 @@ extensions="avi\|flv\|m4v\|mov\|mp4\|mpg\|mpeg\|mkv\|ogv\|vob\|webm\|wmv"
 # Prevents select iterating on tabs/spaces.
 IFS=$'\n'
 select file in $(ssh "$username@$host" "find $videosdir -type f -iregex '.*$@.*\.\($extensions\)\s*$' -size "$size" | sort"); do
-        "$mpvbin" "sftp://$username@$host$file"
-        exit 0
+    "$mpvbin" "sftp://$username@$host$file"
+    read -p "Do you want to delete the video? (y/n) > " question
+	if [[ $question == y ]]; then
+		echo "Deleting '$file' on '$host'."
+		ssh "$username@$host" rm "$file"
+	fi
+    exit 0
 done
