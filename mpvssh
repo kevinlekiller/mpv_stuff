@@ -5,6 +5,7 @@
     Optionally pass regex to search, for example:
     ./mpv_ssh 2002        ; will search for videos with "2002" in the file name.
     ./mpv_ssh 1080p.*h264 ; will search for videos with 1080p followed by h264 in the file name
+    videosdir="/home/user/Downloads" ./mpv_ssh ; Look for videos in different directory than one set below.
     
     Copyright (C) 2016  kevinlekiller
     
@@ -35,7 +36,7 @@ username="username:password"
 host="192.168.1.2"
 
 # Folder on the ssh server to look for video files in.
-videosdir="/home/username/Videos"
+videosdir=${videosdir:-"/home/username/Videos"}
 
 # Local path to mpv
 mpvbin="$(which mpv)"
